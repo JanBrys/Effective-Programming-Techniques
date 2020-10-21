@@ -150,7 +150,7 @@ void v_fill_and_show_2_dim_table(int*** piTable, int iSizeX, int iSizeY)
 }
 void v_mod_table(CTable* pcTab, int iNewSize)
 {
-	pcTab->bSetNewSize(iNewSize);
+	(*pcTab).bSetNewSize(iNewSize);
 }
 
 void v_mod_table(CTable cTab, int iNewSize)
