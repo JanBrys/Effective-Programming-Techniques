@@ -39,7 +39,7 @@ CTable::CTable(CTable& pcOther)
 
 CTable::~CTable()
 {
-	delete pi_table;
+	delete[] pi_table;
 	cout << endl << " usuwam: " << "'<" << s_name << ">'" << endl;
 }
 
@@ -50,17 +50,17 @@ void CTable::vSetName(string sName)
 
 bool CTable::bSetNewSize(int iTableLen)
 {
-	if (0 < iTableLen && iTableLen != i_table_len)
+	if (0 < iTableLen && iTableLen != i_table_len && iTableLen < 10000)
 	{
 		int i_table_len_tmp = i_table_len;
 		int* pi_table_tmp = pi_table;
 		i_table_len = iTableLen;
 		pi_table = new int[i_table_len];
-		for (int ii = 0; ii < i_table_len_tmp; ii++)
+		for (int ii = 0; ii < i_table_len; ii++)
 		{
 			pi_table[ii] = pi_table_tmp[ii];
 		}
-		delete pi_table_tmp;
+		delete[] pi_table_tmp;
 		return true;
 	}
 	else
@@ -74,12 +74,20 @@ CTable* CTable::pcClone()
 	return new CTable(*this);
 }
 
+void CTable::vFillTable(int iValue)
+{
+	for (int ii = 0; ii < i_table_len; ii++)
+	{
+		pi_table[ii] = iValue;
+	}
+}
+
 void CTable::vPrintTable()
 {
 	cout << endl;
 	for (int ii = 0; ii < i_table_len; ii++)
 	{
-		cout << pi_table[ii];
+		cout << pi_table[ii] << " ";
 	}
 	cout << endl;
 }

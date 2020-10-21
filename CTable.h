@@ -16,6 +16,7 @@ public:
 	bool bSetNewSize(int iTableLen);
 	CTable* pcClone();
 
+	void vFillTable(int iValue);
 
 private:
 	string s_name;
