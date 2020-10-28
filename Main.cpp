@@ -78,6 +78,10 @@ int main()
 	delete[] pc_tab;
 
 	cout << endl << "Ponizej usuwane sa ze stosu zmienne" << endl;
+	c_tab_static_param.vFillTable(1);
+	c_tab_static_param.vPrintTable();
+	cout << c_tab_static_param.setValue(15,10);
+	c_tab_static_param.vPrintTable();
 }
 
 

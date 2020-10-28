@@ -43,6 +43,11 @@ CTable::~CTable()
 	cout << endl << " usuwam: " << "'<" << s_name << ">'" << endl;
 }
 
+void CTable::operator=(CTable& pcOther)
+{
+
+}
+
 void CTable::vSetName(string sName)
 {
 	s_name = sName;
@@ -63,6 +68,26 @@ bool CTable::bSetNewSize(int iTableLen)
 		delete[] pi_table_tmp;
 		return true;
 	}
+	else if (iTableLen > i_table_len)
+	{
+		int i_table_len_tmp = i_table_len;
+		int* pi_table_tmp = pi_table;
+		i_table_len = iTableLen;
+		pi_table = new int[i_table_len];
+		for (int ii = 0; ii < i_table_len; ii++)
+		{
+			if (ii < i_table_len_tmp)
+			{
+				pi_table[ii] = pi_table_tmp[ii];
+			}
+			else
+			{
+				pi_table[ii] = DEF_VALUE;
+			}
+		}
+		delete[] pi_table_tmp;
+		return true;
+	}
 	else
 	{
 		return false;
@@ -79,6 +104,41 @@ void CTable::vFillTable(int iValue)
 	for (int ii = 0; ii < i_table_len; ii++)
 	{
 		pi_table[ii] = iValue;
+	}
+}
+
+bool CTable::setValue(int i, int newValue)
+{
+	if (i >= BLOCK_SIZE)
+	{
+		return false;
+	}
+	else if (i < BLOCK_SIZE && i >= i_table_len)
+	{
+		bSetNewSize(i+1);
+		pi_table[i] = newValue;
+	}
+	else//i<BLOCKSIZE && i<i_table_len
+	{
+		pi_table[i] = newValue;
+	}
+	
+}
+
+int CTable::getVal(int i)
+{
+	if (i < i_table_len)
+	{
+		return pi_table[i];
+	}
+	else if (i < BLOCK_SIZE && i >= i_table_len)
+	{
+		bSetNewSize(i+1);
+		return pi_table[i];
+	}
+	else
+	{
+		return -50;
 	}
 }
 

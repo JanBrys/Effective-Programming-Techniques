@@ -18,6 +18,9 @@ public:
 
 	void vFillTable(int iValue);
 
+	bool setValue(int i,int newValue);
+	int getVal(int i);
+
 private:
 	string s_name;
 	int* pi_table;
