@@ -34,10 +34,13 @@ int main()
 	c_tab_1.vPrintTable();
 	*/
 	(c_tab_0+c_tab_1).vPrintTable();
-
+	CTable c_tab_2;
+	c_tab_2 = (c_tab_0 + c_tab_1);
 	c_tab_0 = c_tab_1;
 	c_tab_0.vPrintTable();
 	c_tab_1.vPrintTable();
+	cout << (c_tab_0 ^ 1);
+	cout << (c_tab_0 ^ 51);
 }
 
 

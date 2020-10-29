@@ -11,8 +11,9 @@ public:
 	CTable(CTable& pcOther);
 	~CTable();
 
-	void operator=(CTable& pcOther);
-	CTable operator+(CTable& pcOther);
+	void operator=(const CTable& pcOther);
+	CTable operator+(const CTable& pcOther);
+	bool operator^(const int iValue);
 
 	void vSetName(string sName);
 	void vPrintTable();

@@ -46,10 +46,10 @@ CTable::~CTable()
 	cout << endl << " usuwam: " << "'<" << s_name << ">'" << endl;
 }
 
-void CTable::operator=(CTable& pcOther)
+void CTable::operator=(const CTable& pcOther)
 {
 	delete pi_table;
-	i_table_len = pcOther.iLength();
+	i_table_len = pcOther.i_table_len;
 	pi_table = new int[i_table_len];
 	for (int ii = 0; ii < i_table_len; ii++)
 	{
@@ -57,7 +57,7 @@ void CTable::operator=(CTable& pcOther)
 	}
 }
 
-CTable CTable::operator+(CTable& pcOther)
+CTable CTable::operator+(const CTable& pcOther)
 {
 	CTable c_to_return(s_name + pcOther.s_name, i_table_len + pcOther.i_table_len);
 	for (int ii = 0; ii < i_table_len; ii++)
@@ -69,6 +69,18 @@ CTable CTable::operator+(CTable& pcOther)
 		c_to_return.pi_table[ii] = pcOther.pi_table[ii - i_table_len];
 	}
 	return c_to_return;
+}
+
+bool CTable::operator^(const int iValue)
+{
+	for (int ii = 0; ii < i_table_len; ii++)
+	{
+		if (pi_table[ii] == iValue)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 
