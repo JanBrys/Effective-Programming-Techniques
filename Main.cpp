@@ -35,6 +35,9 @@ int main()
 	*/
 	(c_tab_0+c_tab_1).vPrintTable();
 
+	c_tab_0 = c_tab_1;
+	c_tab_0.vPrintTable();
+	c_tab_1.vPrintTable();
 }
 
 

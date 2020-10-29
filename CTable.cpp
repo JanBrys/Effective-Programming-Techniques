@@ -48,8 +48,13 @@ CTable::~CTable()
 
 void CTable::operator=(CTable& pcOther)
 {
-	pi_table = pcOther.pi_table;
-	i_table_len = pcOther.i_table_len;
+	delete pi_table;
+	i_table_len = pcOther.iLength();
+	pi_table = new int[i_table_len];
+	for (int ii = 0; ii < i_table_len; ii++)
+	{
+		pi_table[ii] = pcOther.pi_table[ii];
+	}
 }
 
 CTable CTable::operator+(CTable& pcOther)
