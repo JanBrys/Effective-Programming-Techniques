@@ -13,75 +13,28 @@ void v_mod_table(CTable cTab, int iNewSize);
 
 int main()
 {
-	cout << "Testowanie funkcji v_alloc_table_add_5(int iSize)" << endl << "iSize = -1:  ";
-	v_alloc_table_add_5(-1);
-	cout << endl << "iSize = 100000: ";
-	v_alloc_table_add_5(100000);
-	cout << endl << "iSize = 14: ";
-	v_alloc_table_add_5(14);
+	CTable c_tab_0, c_tab_1;
 
-	cout << endl << endl << "Testowanie funkcji b_alloc_table_2_dim(int*** piTable, int iSizeX, int iSizeY)" << endl;
-	int** pi_table;
-	cout << "X =5,Y=-5 => " << b_alloc_table_2_dim(&pi_table, 5, -5) << endl;
-	cout << "X =-5,Y=5 => " << b_alloc_table_2_dim(&pi_table, -5, 5) << endl;
-	cout << "X =-5,Y=-5 => " << b_alloc_table_2_dim(&pi_table, -5, -5) << endl;
-	cout << "X =5,Y=3 => " << b_alloc_table_2_dim(&pi_table, 5, 3) << endl;
-	v_fill_and_show_2_dim_table(&pi_table, 5, 3);
+	c_tab_0.bSetNewSize(6);
+	c_tab_1.bSetNewSize(4);
+	for (int ii = 0; ii < c_tab_0.iLength(); ii++)
+	{
+		c_tab_0.vsetValueAt(ii, ii + 1);
+	}
+	for (int ii = 0; ii < c_tab_1.iLength(); ii++)
+	{
+		c_tab_1.vsetValueAt(ii, 51 + ii);
+	}
+	c_tab_0.vPrintTable();
+	c_tab_1.vPrintTable();
+	/*
+	c_tab_0 = c_tab_1;
+	c_tab_1.vsetValueAt(2, 123);
+	c_tab_0.vPrintTable();
+	c_tab_1.vPrintTable();
+	*/
+	(c_tab_0+c_tab_1).vPrintTable();
 
-	cout << endl << endl << "Testowanie funkcji b_dealloc_table_2_dim(int*** piTable, int iSizeX)" << endl;
-	cout << "iSizeX = -1 => " << b_dealloc_table_2_dim(&pi_table,-1) << endl;
-	cout << "iSizeX = 100000 => " << b_dealloc_table_2_dim(&pi_table, 100000) << endl;
-	cout << "iSizeX = 3 => " << b_dealloc_table_2_dim(&pi_table, 3) << endl << endl;
-	
-	cout << "Testy klasy CTable" << endl;
-	cout << "Pierwszy przypadek: Sprawdzanie wszystkich zaimplementowanych metod" << endl;
-	CTable c_tab_static_default;
-	c_tab_static_default.vFillTable(1);
-	c_tab_static_default.vPrintTable();
-	c_tab_static_default.vSetName("Static CTable object");
-	cout << endl << c_tab_static_default.bSetNewSize(-2);
-	cout << endl << c_tab_static_default.bSetNewSize(100000);
-	cout << endl << c_tab_static_default.bSetNewSize(5);
-	cout << endl << c_tab_static_default.bSetNewSize(10);
-	c_tab_static_default.vPrintTable();
-
-	cout << "Sprawdzenie metody *pcClone()" << endl;
-	CTable* pc_new_tab;
-	pc_new_tab = c_tab_static_default.pcClone();
-	delete pc_new_tab;
-
-	cout << endl << "Dowod, ze tablice sa kopiowane:" << endl;
-	c_tab_static_default.vPrintTable();
-
-	cout << endl << "v_mod_table(CTable cTab, int iNewSize)" << endl;
-	v_mod_table(c_tab_static_default, 5);
-	c_tab_static_default.vPrintTable();
-	
-	cout << endl << "v_mod_table(CTable* pcTab, int iNewSize)" << endl;
-	v_mod_table(&c_tab_static_default, 5);
-	c_tab_static_default.vPrintTable();
-
-	cout << endl << "Sprawdzenie konstruktora parametrycznego" << endl;
-	CTable c_tab_static_param("param",5);
-
-	cout << endl << "Sprawdzenie konstruktora kopiujacego" << endl;
-	CTable c_tab_static_copy(c_tab_static_param);
-
-	cout << endl << "Sprawdzenie alokacji statycznej tablicy" << endl;
-	CTable c_tab[3];
-	c_tab[0].vSetName("tab1");
-	c_tab[1].vSetName("tab2");
-	c_tab[2].vSetName("tab3");
-
-	cout << endl << "Sprawdzenie alokacji dynamicznej tablicy" << endl;
-	CTable* pc_tab = new CTable[3];
-	delete[] pc_tab;
-
-	cout << endl << "Ponizej usuwane sa ze stosu zmienne" << endl;
-	c_tab_static_param.vFillTable(1);
-	c_tab_static_param.vPrintTable();
-	cout << c_tab_static_param.setValue(15,10);
-	c_tab_static_param.vPrintTable();
 }
 
 

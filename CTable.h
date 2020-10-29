@@ -11,6 +11,9 @@ public:
 	CTable(CTable& pcOther);
 	~CTable();
 
+	void operator=(CTable& pcOther);
+	CTable operator+(CTable& pcOther);
+
 	void vSetName(string sName);
 	void vPrintTable();
 	bool bSetNewSize(int iTableLen);
@@ -18,12 +21,18 @@ public:
 
 	void vFillTable(int iValue);
 
-	bool setValue(int i,int newValue);
-	int getVal(int i);
-
+	void vsetValueAt(int iOffset, int inewValue);
+	int iLength();
 private:
 	string s_name;
 	int* pi_table;
 	int i_table_len;
 };
 
+/*
+	w obu przypadkach ma wzrocic boola (podpunkt 2 i 3 z dodatkowej listy)
+	w 4 biore przeciecie 2 tablic, jesli nie dziala to zwracam tablice pusta
+	w przypadku kiedy wykonujemy metode operatorowa i zwraca inna niz wartosc typu prostego to z reguly musimy gdzies utworzyc obiekt, wypelnic go wartosciami ktore sa wymagane w kontekscie operacji i trzeba go zwrocic
+	staje sie obiektem tymczasowym, staje sie L-wartoscia - normalnie dostepna dla programisty, mozna pod niego cos przypisac (left), moze stac po lewej stronie operatora przypisania
+
+*/
