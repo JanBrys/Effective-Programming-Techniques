@@ -16,6 +16,7 @@ public:
 	bool operator^(const int iValue);
 	bool operator^(const CTable& pcOther);
 	CTable operator&(const CTable& pcOther);
+
 	void vSetName(string sName);
 	void vPrintTable();
 	bool bSetNewSize(int iTableLen);

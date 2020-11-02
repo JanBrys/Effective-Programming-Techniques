@@ -4,7 +4,7 @@ CTable::CTable()
 {
 	s_name = s_DEFAULT_OBJECT_NAME;
 	pi_table = new int[i_table_len];
-	cout << endl << " bezp: " << "'<" << s_name << ">'" << endl;
+	//cout << endl << " bezp: " << "'<" << s_name << ">'" << endl;
 }
 
 CTable::CTable(string sName, int iTableLen)
@@ -15,7 +15,7 @@ CTable::CTable(string sName, int iTableLen)
 	}
 	s_name = sName;
 	pi_table = new int[i_table_len];
-	cout << endl << " param: " << "'<" << s_name << ">'" << endl;
+	//cout << endl << " param: " << "'<" << s_name << ">'" << endl;
 }
 
 CTable::CTable(CTable& pcOther)
@@ -29,13 +29,13 @@ CTable::CTable(CTable& pcOther)
 		pi_table[ii] = pcOther.pi_table[ii];
 	}
 
-	cout << endl << " kopiuj: " << "'<" << s_name << ">'" << endl;
+	//cout << endl << " kopiuj: " << "'<" << s_name << ">'" << endl;
 }
 
 CTable::~CTable()
 {
 	delete[] pi_table;
-	cout << endl << " usuwam: " << "'<" << s_name << ">'" << endl;
+	//cout << endl << " usuwam: " << "'<" << s_name << ">'" << endl;
 }
 
 void CTable::operator=(const CTable& pcOther)
@@ -84,10 +84,6 @@ bool CTable::operator^(const CTable& pcOther)
 		{
 			return true;
 		}
-		else
-		{
-			return false;
-		}
 	}
 	return false;
 }
@@ -102,7 +98,7 @@ CTable CTable::operator&(const CTable& pcOther)
 	}
 	else
 	{
-		i_tab_len_to_return = pcOther.i_table_len;
+		i_tab_len_to_return = i_table_len;
 	}
 	CTable c_tab_to_return("", i_tab_len_to_return);
 	int i_tab_len_to_return_new = 0;
@@ -110,7 +106,7 @@ CTable CTable::operator&(const CTable& pcOther)
 	{
 		for (int ij = 0 ; ij < pcOther.i_table_len; ij++)
 		{
-			if (pi_table[ii] == pcOther.pi_table[ij])
+			if (pi_table[ii] == pcOther.pi_table[ij]) //tutaj jest blad, bo jak druga tablica ma te same wartosci to wpisuje je wszystkie
 			{
 				c_tab_to_return.pi_table[i_tab_len_to_return_new++] = pcOther.pi_table[ij];
 			}
@@ -181,17 +177,12 @@ void CTable::vFillTable(int iValue)
 
 void CTable::vsetValueAt(int iOffset, int iNewValue)
 {
-	if (iOffset >= BLOCK_SIZE)
+	if (iOffset >= 0 && iOffset <= i_MAX_SIZE_TABLE_LEN)
 	{
-		bSetNewSize(iOffset + BLOCK_SIZE);
-	}
-	else if (iOffset >= i_table_len)
-	{
-		bSetNewSize(iOffset+1);
-		pi_table[iOffset] = iNewValue;
-	}
-	else//i<BLOCKSIZE && i<i_table_len
-	{
+		if (iOffset >= i_table_len)
+		{
+			bSetNewSize(iOffset + 1);
+		}
 		pi_table[iOffset] = iNewValue;
 	}
 }

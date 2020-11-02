@@ -13,62 +13,178 @@ void v_mod_table(CTable cTab, int iNewSize);
 
 int main()
 {
-	CTable c_tab_0, c_tab_1;
+	cout << "Test metody vSetValueAt: " << endl << endl;
 
-	c_tab_0.bSetNewSize(6);
-	c_tab_1.bSetNewSize(4);
-	for (int ii = 0; ii < c_tab_0.iLength(); ii++)
+	CTable* c_tab_1 = new CTable();
+
+	for (int ii = 0; ii < c_tab_1->iLength(); ii++)
 	{
-		c_tab_0.vsetValueAt(ii, ii + 1);
+		c_tab_1->vsetValueAt(ii, ii + 1);
 	}
-	for (int ii = 0; ii < c_tab_1.iLength(); ii++)
+	cout << "Test dla indeksow mieszczacych sie w tablicy: " << endl;
+	c_tab_1->vPrintTable();
+	cout << endl << "Test dla indeksu ujemnego: " << endl;
+	c_tab_1->vsetValueAt(-1, 10);
+	c_tab_1->vPrintTable();
+
+	cout << endl << "Test dla indeksu powyzej 10000: " << endl;
+	c_tab_1->vsetValueAt(10001, 10);
+	c_tab_1->vPrintTable();
+
+	cout << endl << "Test dla indeksu wiekszego od rozmiaru tablicy i mniejszego od maksymalnego indeksu: " << endl;
+	c_tab_1->vsetValueAt(10, 10);
+	c_tab_1->vPrintTable();
+
+	delete c_tab_1;
+	c_tab_1 = NULL;
+
+	cout << "Test dla operatora +: " << endl << endl;
+
+	CTable* c_tab_2 = new CTable();
+	CTable* c_tab_3 = new CTable();
+	for (int ii = 0; ii < c_tab_2->iLength(); ii++)
 	{
-		c_tab_1.vsetValueAt(ii, 51 + ii);
+		c_tab_2->vsetValueAt(ii, ii + 1);
 	}
-	c_tab_0.vPrintTable();
-	c_tab_1.vPrintTable();
-
-	(c_tab_0+c_tab_1).vPrintTable();
-	CTable c_tab_2;
-	c_tab_2 = c_tab_0 + c_tab_1;
-	c_tab_0 = c_tab_1;
-	cout << "Tab 1: ";
-	c_tab_0.vPrintTable();
-	cout << endl << endl << "Tab 2: ";
-	c_tab_1.vPrintTable();
-	cout << endl << endl;
-	cout << "Lista dodatkowa zad. 2: " << endl;
-	cout << "Wywolanie dla int = 1: " <<  (c_tab_0 ^ 1) << endl;
-	cout <<"Wywolanie dla int = 51: " <<(c_tab_0 ^ 51) << endl << endl << endl;
-
-	cout << "Lista dodatkowa zad. 3: " << endl;
-	CTable c_tab_3;
-	for (int ii = 0; ii < c_tab_3.iLength(); ii++)
+	for (int ii = 0; ii < c_tab_3->iLength(); ii++)
 	{
-		c_tab_3.vsetValueAt(ii, ii + 5);
+		c_tab_3->vsetValueAt(ii, ii + 10);
 	}
-	c_tab_3.vPrintTable();
-	CTable c_tab_4;
-	for (int ii = 0; ii < c_tab_4.iLength(); ii++)
+	cout << "Tablica 1: " << endl;
+	c_tab_2->vPrintTable();
+	cout << endl << endl << "Tablica 2:" << endl;
+	c_tab_3->vPrintTable();
+	cout << endl << endl << "Po uzyciu operatora +" << endl;
+	(*c_tab_2 + *c_tab_3).vPrintTable();
+
+	delete c_tab_2;
+	c_tab_2 = NULL;
+	delete c_tab_3;
+	c_tab_3 = NULL;
+	
+	cout << "LISTA 2 - ZADANIA DODATKOWE" << endl;
+	cout << "Testy poprawionego operatora =" << endl << endl;
+	CTable* c_tab_4 = new CTable();
+	CTable* c_tab_5 = new CTable();
+	for (int ii = 0; ii < c_tab_4->iLength(); ii++)
 	{
-		c_tab_4.vsetValueAt(ii, ii + 9);
+		c_tab_4->vsetValueAt(ii, ii + 1);
 	}
-	c_tab_4.vPrintTable();
-	cout << endl << "Wywolanie operatora zad.3: " << (c_tab_3 ^ c_tab_4) << endl;
-
-	cout << "Dla tablicy nie posiadajacej tych samych elementow" << endl << endl;
-	CTable c_tab_5;
-	for (int ii = 0; ii < c_tab_5.iLength(); ii++)
+	for (int ii = 0; ii < c_tab_5->iLength(); ii++)
 	{
-		c_tab_5.vsetValueAt(ii, ii + 50);
+		c_tab_5->vsetValueAt(ii, ii + 10);
 	}
-	c_tab_5.vPrintTable();
-	cout << endl << "Wywolanie operatora zad.3: " << (c_tab_3 ^ c_tab_5) << endl<< endl;
-	cout << "Lista dodatkowa zad. 4: " << endl;
+	cout << "Tablica 1: " << endl;
+	c_tab_4->vPrintTable();
+	cout <<  endl << "Tablica 2:" << endl;
+	c_tab_5->vPrintTable();
+	cout << "Uzycie operatora =" << endl;
+	*c_tab_4 = *c_tab_5;
+	cout << "Tablica 1: " << endl;
+	c_tab_4->vPrintTable();
+	cout << endl << "Tablica 2:" << endl;
+	c_tab_5->vPrintTable();
+	cout << "Zmiana wartosci w tablicy 1: nowa wartosc = 100 w indeksie = 3" << endl;
+	c_tab_4->vsetValueAt(3, 100);
+	cout << "Tablica 1: " << endl;
+	c_tab_4->vPrintTable();
+	cout << endl << "Tablica 2:" << endl;
+	c_tab_5->vPrintTable();
 
-	(c_tab_3 & c_tab_4).vPrintTable();
-	(c_tab_3 & c_tab_5).vPrintTable();
+	delete c_tab_4;
+	c_tab_4 = NULL;
+	delete c_tab_5;
+	c_tab_5 = NULL;
 
+	cout << "Testy poprawionego operatora ^ dla znajdowania liczby" << endl << endl;
+	CTable* c_tab_6 = new CTable();
+	for (int ii = 0; ii < c_tab_6->iLength(); ii++)
+	{
+		c_tab_6->vsetValueAt(ii, ii + 1);
+	}
+	cout << "Tablica: ";
+	c_tab_6->vPrintTable();
+
+	cout << "Test dla liczby 4: " << (*c_tab_6 ^ 4) << endl;
+	cout << "Test dla liczby 10: " << (*c_tab_6 ^ 10) << endl;
+
+	delete c_tab_6;
+	c_tab_6 = NULL;
+
+	cout << "Testy poprawionego operatora ^ dla znajdowania elementów drugiej tablicy" << endl << endl;
+	CTable* c_tab_7 = new CTable();
+	for (int ii = 0; ii < c_tab_7->iLength(); ii++)
+	{
+		c_tab_7->vsetValueAt(ii, ii + 1);
+	}
+	CTable* c_tab_8 = new CTable();
+	c_tab_8->vsetValueAt(0, 10);
+	c_tab_8->vsetValueAt(1, 11);
+	c_tab_8->vsetValueAt(2, 5);
+	c_tab_8->vsetValueAt(3, 13);
+	c_tab_8->vsetValueAt(4, 10);
+
+	CTable* c_tab_9 = new CTable();
+	for (int ii = 0; ii < c_tab_9->iLength(); ii++)
+	{
+		c_tab_9->vsetValueAt(ii, ii + 10);
+	}
+
+	cout << "Tablica 1: ";
+	c_tab_7->vPrintTable();
+	cout << "Tablica 2: ";
+	c_tab_8->vPrintTable();
+	cout << "Tablica 3: ";
+	c_tab_9->vPrintTable();
+	cout << "Sprawdzenie dla Tablicy 1 i 2: " << (*c_tab_7 ^ (*c_tab_8)) << endl;
+	cout << "Sprawdzenie dla Tablicy 1 i 3: " << (*c_tab_7 ^ (*c_tab_9));
+
+	delete c_tab_7;
+	c_tab_7 = NULL;
+	delete c_tab_8;
+	c_tab_8 = NULL;
+	delete c_tab_9;
+	c_tab_9 = NULL;
+
+	cout << "Test dla operatora & daj¹cego przeciecie 2 tablic" << endl;
+
+	CTable c_tab_10("", 3);
+	CTable c_tab_11("", 2);
+
+	c_tab_10.vsetValueAt(0, 1);
+	c_tab_10.vsetValueAt(1, 2);
+	c_tab_10.vsetValueAt(2, 3);
+
+	c_tab_11.vsetValueAt(0, 4);
+	c_tab_11.vsetValueAt(1, 5);
+
+	cout << "Tablica 1: ";
+	c_tab_10.vPrintTable();
+	cout << "Tablica 2: ";
+	c_tab_11.vPrintTable();
+	cout << "Przeciecie tablic: " << endl;
+
+	cout << "Tablica 1 & Tablica 2:";
+	(c_tab_10& c_tab_11).vPrintTable();
+	cout << "Tablica 2 & Tablica 1:";
+	(c_tab_11 & c_tab_10).vPrintTable();
+
+	CTable c_tab_12;
+	c_tab_12 = c_tab_10;
+	cout << "Tablica 3: ";
+	c_tab_12.vPrintTable();
+	cout << "Tablica 1 & Tablica 3:";
+	(c_tab_10 & c_tab_12).vPrintTable();
+
+	CTable c_tab_13("",3);
+	c_tab_13.vsetValueAt(0, 2);
+	c_tab_13.vsetValueAt(1, 2);
+	c_tab_13.vsetValueAt(2, 2);
+	cout << "Tablica 4: ";
+	c_tab_13.vPrintTable();
+
+	cout << "Tablica 1 & Tablica 4:";
+	(c_tab_10 & c_tab_13).vPrintTable();
 }
 
 void v_alloc_table_add_5(int iSize)
