@@ -14,7 +14,8 @@ public:
 	void operator=(const CTable& pcOther);
 	CTable operator+(const CTable& pcOther);
 	bool operator^(const int iValue);
-
+	bool operator^(const CTable& pcOther);
+	CTable operator&(const CTable& pcOther);
 	void vSetName(string sName);
 	void vPrintTable();
 	bool bSetNewSize(int iTableLen);
@@ -27,7 +28,7 @@ public:
 private:
 	string s_name;
 	int* pi_table;
-	int i_table_len;
+	int i_table_len = 5;
 };
 
 /*

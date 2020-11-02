@@ -3,7 +3,6 @@
 CTable::CTable()
 {
 	s_name = s_DEFAULT_OBJECT_NAME;
-	i_table_len = i_DEFAULT_TABLE_LEN;
 	pi_table = new int[i_table_len];
 	cout << endl << " bezp: " << "'<" << s_name << ">'" << endl;
 }
@@ -13,10 +12,6 @@ CTable::CTable(string sName, int iTableLen)
 	if (0 < iTableLen)
 	{
 		i_table_len = iTableLen;
-	}
-	else
-	{
-		i_table_len = i_DEFAULT_TABLE_LEN;
 	}
 	s_name = sName;
 	pi_table = new int[i_table_len];
@@ -37,9 +32,6 @@ CTable::CTable(CTable& pcOther)
 	cout << endl << " kopiuj: " << "'<" << s_name << ">'" << endl;
 }
 
-/*
-
-*/
 CTable::~CTable()
 {
 	delete[] pi_table;
@@ -83,6 +75,50 @@ bool CTable::operator^(const int iValue)
 	return false;
 }
 
+bool CTable::operator^(const CTable& pcOther)
+{
+	CTable c_tab_tmp_for_left_object(*this);
+	for (int ii = 0; ii < pcOther.i_table_len; ii++)
+	{
+		if (c_tab_tmp_for_left_object ^ pcOther.pi_table[ii])
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return false;
+}
+
+CTable CTable::operator&(const CTable& pcOther)
+{
+
+	int i_tab_len_to_return;
+	if (i_table_len <= pcOther.i_table_len)
+	{
+		i_tab_len_to_return = pcOther.i_table_len;
+	}
+	else
+	{
+		i_tab_len_to_return = pcOther.i_table_len;
+	}
+	CTable c_tab_to_return("", i_tab_len_to_return);
+	int i_tab_len_to_return_new = 0;
+	for (int ii = 0; ii < i_table_len; ii++)
+	{
+		for (int ij = 0 ; ij < pcOther.i_table_len; ij++)
+		{
+			if (pi_table[ii] == pcOther.pi_table[ij])
+			{
+				c_tab_to_return.pi_table[i_tab_len_to_return_new++] = pcOther.pi_table[ij];
+			}
+		}
+	}
+	c_tab_to_return.bSetNewSize(i_tab_len_to_return_new);
+	return c_tab_to_return;
+}
 
 void CTable::vSetName(string sName)
 {

@@ -27,22 +27,49 @@ int main()
 	}
 	c_tab_0.vPrintTable();
 	c_tab_1.vPrintTable();
-	/*
-	c_tab_0 = c_tab_1;
-	c_tab_1.vsetValueAt(2, 123);
-	c_tab_0.vPrintTable();
-	c_tab_1.vPrintTable();
-	*/
+
 	(c_tab_0+c_tab_1).vPrintTable();
 	CTable c_tab_2;
-	c_tab_2 = (c_tab_0 + c_tab_1);
+	c_tab_2 = c_tab_0 + c_tab_1;
 	c_tab_0 = c_tab_1;
+	cout << "Tab 1: ";
 	c_tab_0.vPrintTable();
+	cout << endl << endl << "Tab 2: ";
 	c_tab_1.vPrintTable();
-	cout << (c_tab_0 ^ 1);
-	cout << (c_tab_0 ^ 51);
-}
+	cout << endl << endl;
+	cout << "Lista dodatkowa zad. 2: " << endl;
+	cout << "Wywolanie dla int = 1: " <<  (c_tab_0 ^ 1) << endl;
+	cout <<"Wywolanie dla int = 51: " <<(c_tab_0 ^ 51) << endl << endl << endl;
 
+	cout << "Lista dodatkowa zad. 3: " << endl;
+	CTable c_tab_3;
+	for (int ii = 0; ii < c_tab_3.iLength(); ii++)
+	{
+		c_tab_3.vsetValueAt(ii, ii + 5);
+	}
+	c_tab_3.vPrintTable();
+	CTable c_tab_4;
+	for (int ii = 0; ii < c_tab_4.iLength(); ii++)
+	{
+		c_tab_4.vsetValueAt(ii, ii + 9);
+	}
+	c_tab_4.vPrintTable();
+	cout << endl << "Wywolanie operatora zad.3: " << (c_tab_3 ^ c_tab_4) << endl;
+
+	cout << "Dla tablicy nie posiadajacej tych samych elementow" << endl << endl;
+	CTable c_tab_5;
+	for (int ii = 0; ii < c_tab_5.iLength(); ii++)
+	{
+		c_tab_5.vsetValueAt(ii, ii + 50);
+	}
+	c_tab_5.vPrintTable();
+	cout << endl << "Wywolanie operatora zad.3: " << (c_tab_3 ^ c_tab_5) << endl<< endl;
+	cout << "Lista dodatkowa zad. 4: " << endl;
+
+	(c_tab_3 & c_tab_4).vPrintTable();
+	(c_tab_3 & c_tab_5).vPrintTable();
+
+}
 
 void v_alloc_table_add_5(int iSize)
 {
@@ -89,6 +116,7 @@ bool b_dealloc_table_2_dim(int*** piTable, int iSizeX)
 		delete[] (*piTable)[ii];
 	}
 	delete[] (*piTable);
+	*piTable = NULL;
 	return true;
 }
 
@@ -120,6 +148,5 @@ void v_mod_table(CTable cTab, int iNewSize)
 {
 	cTab.bSetNewSize(iNewSize);
 
-}
-//v_fill_and_show_2_dim_table(int*** piTable, int iSizeX, int iSizeY)
+}//v_fill_and_show_2_dim_table(int*** piTable, int iSizeX, int iSizeY)
 
