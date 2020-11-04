@@ -102,13 +102,16 @@ CTable CTable::operator&(const CTable& pcOther)
 	}
 	CTable c_tab_to_return("", i_tab_len_to_return);
 	int i_tab_len_to_return_new = 0;
+	bool found = false;
 	for (int ii = 0; ii < i_table_len; ii++)
 	{
+		found = false;
 		for (int ij = 0 ; ij < pcOther.i_table_len; ij++)
 		{
-			if (pi_table[ii] == pcOther.pi_table[ij]) //tutaj jest blad, bo jak druga tablica ma te same wartosci to wpisuje je wszystkie
+			if (pi_table[ii] == pcOther.pi_table[ij] && !found) //tutaj jest blad, bo jak druga tablica ma te same wartosci to wpisuje je wszystkie
 			{
 				c_tab_to_return.pi_table[i_tab_len_to_return_new++] = pcOther.pi_table[ij];
+				found = true;
 			}
 		}
 	}

@@ -146,14 +146,15 @@ int main()
 	delete c_tab_9;
 	c_tab_9 = NULL;
 
-	cout << "Test dla operatora & daj¹cego przeciecie 2 tablic" << endl;
+	cout <<endl << "Test dla operatora & dajacego przeciecie 2 tablic" << endl;
 
-	CTable c_tab_10("", 3);
+	CTable c_tab_10("", 4);
 	CTable c_tab_11("", 2);
 
 	c_tab_10.vsetValueAt(0, 1);
 	c_tab_10.vsetValueAt(1, 2);
 	c_tab_10.vsetValueAt(2, 3);
+	c_tab_10.vsetValueAt(3, 2);
 
 	c_tab_11.vsetValueAt(0, 4);
 	c_tab_11.vsetValueAt(1, 5);
@@ -163,7 +164,7 @@ int main()
 	cout << "Tablica 2: ";
 	c_tab_11.vPrintTable();
 	cout << "Przeciecie tablic: " << endl;
-
+	//dla 2 przypadkow ponizje zwracana jest pusta tablica, ktora ma dlugosc dluzszej tablicy wyrazenia
 	cout << "Tablica 1 & Tablica 2:";
 	(c_tab_10& c_tab_11).vPrintTable();
 	cout << "Tablica 2 & Tablica 1:";
