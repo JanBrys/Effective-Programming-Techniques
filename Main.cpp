@@ -157,7 +157,8 @@ int main()
 	cout << endl << endl << "vPrintUp()" << endl;
 	c_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(1)->vPrintUp();
 	*/
-	
+	//											MOVESUBTREE DLA DYNAMIC TREE
+/*
 CTreeDynamic c_first_tree;
 c_first_tree.pcGetRoot()->vAddNewChild();
 c_first_tree.pcGetRoot()->vAddNewChild();
@@ -196,5 +197,7 @@ cout << endl << endl;
 cout << "Drugie drzewo: ";
 c_second_tree.vPrintTree();
 cout << endl << endl;
+*/
+
 
 }
