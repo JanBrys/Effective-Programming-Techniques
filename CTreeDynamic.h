@@ -22,7 +22,10 @@ private:
 		void vPrint();
 		void vPrintAllBelow();
 		void vPrintUp();
+		void addSpecifiedChild(CNodeDynamic* newChild);
+		void untrackChild();
 	private:
+
 		vector<CNodeDynamic*> v_children;
 		CNodeDynamic* pc_parent_node;
 		int i_val;
@@ -32,6 +35,7 @@ public:
 	~CTreeDynamic();
 	CNodeDynamic* pcGetRoot();
 	void vPrintTree();
+	bool bMoveSubtree(CNodeDynamic *pcParentNode,CNodeDynamic *pcNewChildNote);
 private:
 	CNodeDynamic* c_root;
 };

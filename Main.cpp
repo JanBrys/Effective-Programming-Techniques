@@ -158,6 +158,43 @@ int main()
 	c_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(1)->vPrintUp();
 	*/
 	
-	
-	
+CTreeDynamic c_first_tree;
+c_first_tree.pcGetRoot()->vAddNewChild();
+c_first_tree.pcGetRoot()->vAddNewChild();
+c_first_tree.pcGetRoot()->vAddNewChild();
+c_first_tree.pcGetRoot()->pcGetChild(0)->vSetValue(1);
+c_first_tree.pcGetRoot()->pcGetChild(1)->vSetValue(2);
+c_first_tree.pcGetRoot()->pcGetChild(2)->vSetValue(3);
+c_first_tree.pcGetRoot()->pcGetChild(2)->vAddNewChild();
+c_first_tree.pcGetRoot()->pcGetChild(2)->pcGetChild(0)->vSetValue(4);
+cout << "Pierwsze drzewo: ";
+c_first_tree.vPrintTree();
+cout << endl << endl;
+
+CTreeDynamic c_second_tree;
+c_second_tree.pcGetRoot()->vSetValue(50);
+c_second_tree.pcGetRoot()->vAddNewChild();
+c_second_tree.pcGetRoot()->vAddNewChild();
+
+c_second_tree.pcGetRoot()->pcGetChild(0)->vSetValue(54);
+c_second_tree.pcGetRoot()->pcGetChild(1)->vSetValue(55);
+c_second_tree.pcGetRoot()->pcGetChild(0)->vAddNewChild();
+c_second_tree.pcGetRoot()->pcGetChild(0)->vAddNewChild();
+c_second_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(0)->vSetValue(56);
+c_second_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(1)->vSetValue(57);
+c_second_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(0)->vAddNewChild();
+c_second_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(0)->pcGetChild(0)->vSetValue(58);
+cout << "Drugie drzewo: ";
+c_second_tree.vPrintTree();
+cout << endl << endl;
+
+c_first_tree.bMoveSubtree(c_first_tree.pcGetRoot()->pcGetChild(2), c_second_tree.pcGetRoot()->pcGetChild(0));
+cout << endl << "Po subtree (Tree1,Tree2)" << endl << endl;
+cout << "Pierwsze drzewo: ";
+c_first_tree.vPrintTree();
+cout << endl << endl;
+cout << "Drugie drzewo: ";
+c_second_tree.vPrintTree();
+cout << endl << endl;
+
 }

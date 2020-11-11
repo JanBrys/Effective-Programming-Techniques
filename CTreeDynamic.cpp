@@ -79,6 +79,22 @@ void CTreeDynamic::CNodeDynamic::vPrintUp()
 	}
 }
 
+void CTreeDynamic::CNodeDynamic::addSpecifiedChild(CNodeDynamic* newChild)
+{
+	v_children.push_back(newChild);
+}
+
+void CTreeDynamic::CNodeDynamic::untrackChild()
+{
+	for (int ii = 0; ii < pc_parent_node->iGetChildrenNumber(); ii++)
+	{
+		if (pc_parent_node->pcGetChild(ii) == this)
+		{
+			pc_parent_node->v_children.erase(pc_parent_node->v_children.begin()+ii);
+		}
+	}
+}
+
 CTreeDynamic::CTreeDynamic()
 {
 	c_root = new CNodeDynamic();
@@ -97,4 +113,11 @@ CTreeDynamic::CNodeDynamic* CTreeDynamic::pcGetRoot()
 void CTreeDynamic::vPrintTree()
 {
 	pcGetRoot()->vPrintAllBelow();
+}
+
+bool CTreeDynamic::bMoveSubtree(CNodeDynamic* pcParentNode, CNodeDynamic* pcNewChildNote)
+{
+	pcParentNode->addSpecifiedChild(pcNewChildNote);
+	pcNewChildNote->untrackChild();
+	return true;
 }
