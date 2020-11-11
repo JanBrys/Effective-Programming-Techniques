@@ -32,10 +32,3 @@ private:
 	int i_table_len = 5;
 };
 
-/*
-	w obu przypadkach ma wzrocic boola (podpunkt 2 i 3 z dodatkowej listy)
-	w 4 biore przeciecie 2 tablic, jesli nie dziala to zwracam tablice pusta
-	w przypadku kiedy wykonujemy metode operatorowa i zwraca inna niz wartosc typu prostego to z reguly musimy gdzies utworzyc obiekt, wypelnic go wartosciami ktore sa wymagane w kontekscie operacji i trzeba go zwrocic
-	staje sie obiektem tymczasowym, staje sie L-wartoscia - normalnie dostepna dla programisty, mozna pod niego cos przypisac (left), moze stac po lewej stronie operatora przypisania
-
-*/
