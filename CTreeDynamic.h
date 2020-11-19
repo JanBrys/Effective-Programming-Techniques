@@ -34,6 +34,13 @@ public:
 	CTreeDynamic();
 	~CTreeDynamic();
 	CNodeDynamic* pcGetRoot();
+
+	void vSetValue(int iNewVal);
+	int iGetChildrenNumber();
+	void vAddNewChild();
+
+	CNodeDynamic* pcGetChild(int iChildOffset);
+
 	void vPrintTree();
 	bool bMoveSubtree(CNodeDynamic *pcParentNode,CNodeDynamic *pcNewChildNote);
 private:

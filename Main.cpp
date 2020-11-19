@@ -160,7 +160,7 @@ int main()
 	c_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(1)->vPrintUp();
 	*/
 	//											MOVESUBTREE DLA DYNAMIC TREE
-
+/*
 CTreeDynamic c_first_tree;
 c_first_tree.pcGetRoot()->vAddNewChild();
 c_first_tree.pcGetRoot()->vAddNewChild();
@@ -199,5 +199,18 @@ cout << endl << endl;
 cout << "Drugie drzewo: ";
 c_second_tree.vPrintTree();
 cout << endl << endl;
+*/
+CTreeStatic a;
+a.vAddNewChild();
+a.vAddNewChild();
+a.pcGetChild(0)->vSetValue(10);
+a.vPrintTree();
+cout << endl << endl;
+
+CTreeDynamic b;
+b.vAddNewChild();
+b.vAddNewChild();
+b.pcGetChild(0)->vSetValue(10);
+b.vPrintTree();
 
 }

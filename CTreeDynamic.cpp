@@ -105,3 +105,24 @@ bool CTreeDynamic::bMoveSubtree(CNodeDynamic* pcParentNode, CNodeDynamic* pcNewC
 	pcNewChildNote->untrackChild();
 	return true;
 }
+
+void CTreeDynamic::vSetValue(int iNewVal)
+{
+	pcGetRoot()->vSetValue(iNewVal);
+}
+
+int CTreeDynamic::iGetChildrenNumber()
+{
+	 return pcGetRoot()->iGetChildrenNumber();
+}
+
+void CTreeDynamic::vAddNewChild()
+{
+	pcGetRoot()->vAddNewChild();
+}
+
+CTreeDynamic::CNodeDynamic* CTreeDynamic::pcGetChild(int iChildOffset)
+{
+	return pcGetRoot()->pcGetChild(iChildOffset);
+}
+

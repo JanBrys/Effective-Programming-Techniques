@@ -82,3 +82,23 @@ bool CTreeStatic::moveSubtree(CNodeStatic* pcParentNode, CNodeStatic* pcNewChild
     return false;
 }
 
+CTreeStatic::CNodeStatic* CTreeStatic::pcGetChild(int iChildOffset)
+{
+    return pcGetRoot()->pcGetChild(iChildOffset);
+}
+
+void CTreeStatic::vSetValue(int iNewVal)
+{
+    pcGetRoot()->vSetValue(iNewVal);
+}
+
+int CTreeStatic::iGetChildrenNumber()
+{
+    return pcGetRoot()->iGetChildrenNumber();
+}
+
+void CTreeStatic::vAddNewChild()
+{
+    pcGetRoot()->vAddNewChild();
+}
+
