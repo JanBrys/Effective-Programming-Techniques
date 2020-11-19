@@ -8,13 +8,6 @@ CTreeStatic::CNodeStatic::CNodeStatic()
 
 CTreeStatic::CNodeStatic::~CNodeStatic()
 {
-    if (iGetChildrenNumber() != 0)
-    {
-        for (int ii = 0; ii < iGetChildrenNumber(); ii++)
-        {
-            pcGetChild(ii)->pc_parent_node = NULL;
-        }
-    }
 }
 
 void CTreeStatic::CNodeStatic::vSetValue(int iNewVal)
@@ -50,17 +43,10 @@ void CTreeStatic::CNodeStatic::vPrint()
 
 void CTreeStatic::CNodeStatic::vPrintAllBelow()
 {
-    if (iGetChildrenNumber() == 0)
+    vPrint();
+    for (int ii = 0; ii < iGetChildrenNumber(); ii++)
     {
-        vPrint();
-    }
-    else
-    {
-        this->vPrint();
-        for (int ii = 0; ii < iGetChildrenNumber(); ii++)
-        {
-            this->pcGetChild(ii)->vPrintAllBelow();
-        }
+        this->pcGetChild(ii)->vPrintAllBelow();   
     }
 }
 
@@ -90,3 +76,9 @@ void CTreeStatic::vPrintTree()
 {
     pcGetRoot()->vPrintAllBelow();
 }
+
+bool CTreeStatic::moveSubtree(CNodeStatic* pcParentNode, CNodeStatic* pcNewChildNote)
+{
+    return false;
+}
+

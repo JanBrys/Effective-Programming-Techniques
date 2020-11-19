@@ -8,17 +8,11 @@ CNodeDynamic::CNodeDynamic()
 
 CNodeDynamic::~CNodeDynamic()
 {
-	if (iGetChildrenNumber() != 0)
+	for (int ii = 0; ii < iGetChildrenNumber(); ii++)
 	{
-		for (int ii = 0; ii < iGetChildrenNumber(); ii++)
-		{
-			pcGetChild(ii)->pc_parent_node = NULL;
-			delete pcGetChild(ii);
-		}
+		delete pcGetChild(ii);
 	}
 }
-
-
 
 void CNodeDynamic::vSetValue(int iNewVal)
 {
@@ -53,19 +47,13 @@ void CNodeDynamic::vPrint()
 
 void CNodeDynamic::vPrintAllBelow()
 {
-	if (iGetChildrenNumber() == 0)
+	vPrint();
+	for (int ii = 0; ii < iGetChildrenNumber(); ii++)
 	{
-		vPrint();
-	}
-	else
-	{
-		this->vPrint();
-		for (int ii = 0; ii < iGetChildrenNumber(); ii++)
-		{
-			this->pcGetChild(ii)->vPrintAllBelow();
-		}
+		this->pcGetChild(ii)->vPrintAllBelow();
 	}
 }
+
 void CNodeDynamic::vPrintUp()
 {
 	vPrint();

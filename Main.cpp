@@ -1,5 +1,5 @@
 #include "CTreeStatic.h"
-//#include "CNodeStatic.h"
+#include "CNodeStatic.h"
 #include "CTreeDynamic.h"
 #include "CNodeDynamic.h"
 int main()
@@ -7,7 +7,7 @@ int main()
 
 	//													STATIC NODE
 	/*
-		CNodeStatic c_root;
+	* CNodeStatic c_root;
 	CNodeStatic* c_null = c_root.pcGetChild(1);
 	delete c_null;
 	c_root.vAddNewChild();
@@ -43,6 +43,8 @@ int main()
 	cout << endl << endl << "vPrintUp()" << endl;
 	c_root.pcGetChild(0)->pcGetChild(1)->vPrintUp();
 	*/
+	
+	
 
 	//													STATIC TREE
 
@@ -158,7 +160,7 @@ int main()
 	c_tree.pcGetRoot()->pcGetChild(0)->pcGetChild(1)->vPrintUp();
 	*/
 	//											MOVESUBTREE DLA DYNAMIC TREE
-/*
+
 CTreeDynamic c_first_tree;
 c_first_tree.pcGetRoot()->vAddNewChild();
 c_first_tree.pcGetRoot()->vAddNewChild();
@@ -197,7 +199,5 @@ cout << endl << endl;
 cout << "Drugie drzewo: ";
 c_second_tree.vPrintTree();
 cout << endl << endl;
-*/
-
 
 }

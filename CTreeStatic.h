@@ -32,6 +32,7 @@ public:
 	~CTreeStatic();
 	CNodeStatic* pcGetRoot();
 	void vPrintTree();
+	bool moveSubtree(CNodeStatic* pcParentNode, CNodeStatic* pcNewChildNote);
 	
 private:
 

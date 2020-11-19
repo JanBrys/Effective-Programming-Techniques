@@ -8,21 +8,11 @@ CTreeDynamic::CNodeDynamic::CNodeDynamic()
 
 CTreeDynamic::CNodeDynamic::~CNodeDynamic()
 {
-	if (iGetChildrenNumber() != 0)
+	for (int ii = 0; ii < iGetChildrenNumber(); ii++)
 	{
-		for (int ii = 0; ii < iGetChildrenNumber(); ii++)
-		{
-			pcGetChild(ii)->pc_parent_node = NULL;
-			delete pcGetChild(ii);
-		}
-	}
-	else
-	{
-		pc_parent_node = NULL;
+		delete pcGetChild(ii);
 	}
 }
-
-
 
 void CTreeDynamic::CNodeDynamic::vSetValue(int iNewVal)
 {
@@ -57,17 +47,10 @@ void CTreeDynamic::CNodeDynamic::vPrint()
 
 void CTreeDynamic::CNodeDynamic::vPrintAllBelow()
 {
-	if (iGetChildrenNumber() == 0)
+	vPrint();
+	for (int ii = 0; ii < iGetChildrenNumber(); ii++)
 	{
-		vPrint();
-	}
-	else
-	{
-		this->vPrint();
-		for (int ii = 0; ii < iGetChildrenNumber(); ii++)
-		{
-			this->pcGetChild(ii)->vPrintAllBelow();
-		}
+		this->pcGetChild(ii)->vPrintAllBelow();
 	}
 }
 void CTreeDynamic::CNodeDynamic::vPrintUp()
@@ -82,6 +65,7 @@ void CTreeDynamic::CNodeDynamic::vPrintUp()
 void CTreeDynamic::CNodeDynamic::addSpecifiedChild(CNodeDynamic* newChild)
 {
 	v_children.push_back(newChild);
+	newChild->pc_parent_node = this;
 }
 
 void CTreeDynamic::CNodeDynamic::untrackChild()
